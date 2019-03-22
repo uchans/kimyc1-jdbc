@@ -1,0 +1,12 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    jcenter();
+}
+
+dependencies {
+    implementation 'org.mariadb.jdbc:mariadb-java-client:+'
+    implementation 'junit:junit:+'
+}
