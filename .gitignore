@@ -1,0 +1,12 @@
+./
+../
+.classpath
+.git/
+.gradle/
+.project
+.settings/
+bin/
+gradle/
+gradlew*
+gradlew.bat
+settings.gradle
