@@ -11,6 +11,11 @@ import javax.sql.DataSource;
 
 import org.mariadb.jdbc.MariaDbDataSource;
 
+/**
+ * ArticleDao 인터페이스의 구현 클래스. 순수 JDBC 코드로 구현한다.
+ * 
+ * @author Jacob
+ */
 public class ArticleDaoImplUsingRawJdbc implements ArticleDao {
 
 	/**
@@ -107,14 +112,14 @@ public class ArticleDaoImplUsingRawJdbc implements ArticleDao {
 	 * 게시글 등록
 	 */
 	@Override
-	public void addArticle(Article article) throws DaoException {
+	public int addArticle(Article article) throws DaoException {
 		try (Connection con = ds.getConnection();
 				PreparedStatement ps = con.prepareStatement(ADD_ARTICLE)) {
 			ps.setString(1, article.getTitle());
 			ps.setString(2, article.getContent());
 			ps.setString(3, article.getUserId());
 			ps.setString(4, article.getName());
-			ps.executeUpdate();
+			return ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException(e);
@@ -125,13 +130,13 @@ public class ArticleDaoImplUsingRawJdbc implements ArticleDao {
 	 * 게시글 수정
 	 */
 	@Override
-	public void updateArticle(Article article) throws DaoException {
+	public int updateArticle(Article article) throws DaoException {
 		try (Connection con = ds.getConnection();
 				PreparedStatement ps = con.prepareStatement(UPDATE_ARTICLE)) {
 			ps.setString(1, article.getTitle());
 			ps.setString(2, article.getContent());
 			ps.setString(3, article.getArticleId());
-			ps.executeUpdate();
+			return ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException(e);
@@ -142,11 +147,11 @@ public class ArticleDaoImplUsingRawJdbc implements ArticleDao {
 	 * 게시글 삭제
 	 */
 	@Override
-	public void deleteArticle(String articleId) throws DaoException {
+	public int deleteArticle(String articleId) throws DaoException {
 		try (Connection con = ds.getConnection();
 				PreparedStatement ps = con.prepareStatement(DELETE_ARTICLE)) {
 			ps.setString(1, articleId);
-			ps.executeUpdate();
+			return ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException(e);

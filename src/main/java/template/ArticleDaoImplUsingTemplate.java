@@ -104,8 +104,8 @@ public class ArticleDaoImplUsingTemplate implements ArticleDao {
 	 * 게시글 등록
 	 */
 	@Override
-	public void addArticle(Article article) {
-		jdbcTemplate.update(ADD_ARTICLE, article.getTitle(),
+	public int addArticle(Article article) {
+		return jdbcTemplate.update(ADD_ARTICLE, article.getTitle(),
 				article.getContent(), article.getUserId(), article.getName());
 	}
 
@@ -113,8 +113,8 @@ public class ArticleDaoImplUsingTemplate implements ArticleDao {
 	 * 게시글 수정
 	 */
 	@Override
-	public void updateArticle(Article article) {
-		jdbcTemplate.update(UPDATE_ARTICLE, article.getTitle(),
+	public int updateArticle(Article article) {
+		return jdbcTemplate.update(UPDATE_ARTICLE, article.getTitle(),
 				article.getContent(), article.getArticleId());
 	}
 
@@ -122,7 +122,7 @@ public class ArticleDaoImplUsingTemplate implements ArticleDao {
 	 * 게시글 삭제
 	 */
 	@Override
-	public void deleteArticle(String articleId) {
-		jdbcTemplate.update(DELETE_ARTICLE, articleId);
+	public int deleteArticle(String articleId) {
+		return jdbcTemplate.update(DELETE_ARTICLE, articleId);
 	}
 }
