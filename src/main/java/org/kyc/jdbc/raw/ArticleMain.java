@@ -36,7 +36,7 @@ public class ArticleMain {
 		article.setTitle("This is title.");
 		article.setContent("This is content");
 		article.setUserId("1");
-		article.setName("조원석");
+		article.setName("김유찬");
 		if (articleDao.addArticle(article) > 0)
 			System.out.println("글을 추가했습니다.");
 		else
